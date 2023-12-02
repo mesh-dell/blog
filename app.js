@@ -3,11 +3,14 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const Blog = require('./models/blog');
 const { result } = require('lodash');
+const dotenv  = require('dotenv');
+
+dotenv.config();
+
 //express app
 const app = express();
 
-// const URIdb = 'mongodb+srv://mesh:CczkSajZQq8L8sMc@node-tuts.lmm1xwv.mongodb.net/nodetuts?retryWrites=true&w=majority';
-const uri = 'mongodb://localhost:27017';
+const uri = process.env.MONGO_URI;
 mongoose.connect(uri)
     .then((result) => app.listen(3000))
     .catch((err) => {console.log(err)})
